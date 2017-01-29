@@ -31,15 +31,22 @@ def inputSubReddit(request):
             
             reddit = RedditData(subredditName)
             
-            canvas = reddit.plotTraffic()[0]
-            graphic = BytesIO()
-            canvas.print_png(graphic)
-            print(canvas)
-            print(graphic)              
-            return render(request, 'sentiments/index.html', {'graphic':b64encode(graphic.getvalue()), 'form':form})
-            #respons= HttpResponse(content_type='image/png')
-            #canvas.print_png(respons)            
-            #return respons
+            canvas0, canvas1, canvas2 = reddit.plotTraffic()
+            #canvas3 = reddit.plotSentiment()
+            graphic0 = BytesIO()
+            graphic1 = BytesIO()
+            graphic2 = BytesIO()
+            graphic3 = BytesIO()
+            canvas0.print_png(graphic0)
+            canvas1.print_png(graphic1)
+            canvas2.print_png(graphic2)
+            #canvas3.print_png(graphic3)
+            graphic0 = b64encode(graphic0.getvalue())
+            graphic1 = b64encode(graphic1.getvalue())
+            graphic2 = b64encode(graphic2.getvalue())
+            graphic3 = None# b64encode(graphic3.getvalue())
+            context = {'graphic0':graphic0, 'graphic1':graphic1, 'graphic2':graphic2, 'graphic3':graphic3, 'form':form} 
+            return render(request, 'sentiments/index.html', context)
         else:
             
             print(form)

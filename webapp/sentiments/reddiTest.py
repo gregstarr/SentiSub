@@ -103,8 +103,8 @@ class RedditData():
         
     def getTraffic(self):
         """
-        day - [epoch time, uniques, pageviews, subscriptions]
-        hour and month - [epoch time, uniques, pageviews]
+        day - [epoch time, uniques, Page Views, subscriptions]
+        hour and month - [epoch time, uniques, Page Views]
         """
         
         traffic_data = self.subreddit.traffic()
@@ -134,7 +134,7 @@ class RedditData():
         
     def plotTraffic(self):
         
-        day_fig = plt.figure(figsize=(12,12),dpi=300)
+        day_fig = plt.figure(figsize=(12,12),dpi=100)
         day_fig.suptitle('Daily')
         ax1 = day_fig.add_subplot(311)
         ax1.plot(self.dt,self.dd[:,0])
@@ -142,7 +142,7 @@ class RedditData():
         
         ax2 = day_fig.add_subplot(312,sharex=ax1)
         ax2.plot(self.dt,self.dd[:,1])
-        ax2.set_ylabel('Pageviews')
+        ax2.set_ylabel('Page Views')
         
         ax3 = day_fig.add_subplot(313,sharex=ax1)
         ax3.plot(self.dt,self.dd[:,2])
@@ -152,7 +152,7 @@ class RedditData():
         plt.tight_layout()
         
         
-        hour_fig = plt.figure(figsize=(12,12),dpi=300)
+        hour_fig = plt.figure(figsize=(12,12),dpi=100)
         hour_fig.suptitle('Hourly')
     
         hour_fmt = mdates.DateFormatter('%b %d %I:%M %p')
@@ -163,22 +163,25 @@ class RedditData():
         
         ax2 = hour_fig.add_subplot(212,sharex=ax1)
         ax2.plot(self.ht,self.hd[:,1])
-        ax2.set_ylabel('Pageviews')
+        ax2.set_ylabel('Page Views')
     
         hour_fig.autofmt_xdate()
         plt.tight_layout()
         
         
-        month_fig = plt.figure(figsize=(12,12),dpi=300)
+        month_fig = plt.figure(figsize=(12,12),dpi=100)
         month_fig.suptitle('Monthly')
-    
+        
+        month_fmt = mdates.DateFormatter('%b %Y')
+
         ax1 = month_fig.add_subplot(211)
         ax1.plot(self.mt,self.md[:,0])
         ax1.set_ylabel('Unique Visits')
+        ax1.xaxis.set_major_formatter(month_fmt)
     
         ax2 = month_fig.add_subplot(212,sharex=ax1)
         ax2.plot(self.mt,self.md[:,1])
-        ax2.set_ylabel('Pageviews')
+        ax2.set_ylabel('Page Views')
     
         month_fig.autofmt_xdate()
         plt.tight_layout()
