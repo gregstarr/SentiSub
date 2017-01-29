@@ -1,0 +1,530 @@
+<!DOCTYPE HTML>
+<!--
+	Visualize by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>sectiontiSub</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<span><h1>SentiSub</span>
+						<h2 style="margin: 0 120px">This is <strong>SentiSub</strong>, a responsive subreddit natural language processor. SentiSub is able to analyze various subreddit comments through natural language processing algorithms offered by NLTC.</h2>
+					</header>
+ 
+				<!-- Main -->
+					<section id="main">
+					<br>
+					<span>
+							<form>
+							<input type="text" name="Subreddit" placeholder="subreddit name">
+							<input class="button btn-info" type="Submit" value="Go">
+						</form>
+
+					</span>
+						
+
+
+					
+
+					</section>
+
+				<!-- Footer -->
+					<footer style="margin: 500px 0 0 0" id="footer">
+						<p>&copy; SentiSub. All rights reserved. <br>Design: <a href="http://templated.co">TEMPLATED</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+	<style>
+		@charset "UTF-8";
+	@import url(font-awesome.min.css);
+	@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:200");
+	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+	#wrapper {
+		margin: 5%;
+	}
+	#main {
+		max-height: 1000px;	
+	}
+	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+		display: block;
+	}
+
+	body {
+		line-height: 1;
+		text-align: center;
+	}
+
+	body {
+		-webkit-text-size-adjust: none;
+	}
+	/* Type */
+
+	body, input, select, textarea {
+		color: rgba(0, 0, 0, 0.65);
+		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-size: 13pt;
+		font-weight: 200;
+		line-height: 1.65;
+		text-align: center;
+	}
+
+		@media screen and (max-width: 1280px) {
+
+			body, input, select, textarea {
+				font-size: 12pt;
+			}
+
+		}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+		border-bottom: dotted 1px rgba(255, 255, 255, 0.35);
+		-moz-transition: border-bottom-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		-webkit-transition: border-bottom-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		-ms-transition: border-bottom-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		transition: border-bottom-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		text-align: center;
+	}
+
+		a:hover {
+			color: #000000
+;
+			border-bottom-color: transparent;
+		}
+
+	strong, b {
+		color: #000000
+;	
+		font-weight: 200;
+	}
+
+	em, i {
+		font-style: italic;
+	}
+
+	p {
+		margin: 0 0 2em 0;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		color: #000000
+;
+		font-weight: 200;
+		line-height: 1.5;
+		margin: 0 0 1em 0;
+	}
+
+		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		@media screen and (max-width: 980px) {
+
+			h1 br, h2 br, h3 br, h4 br, h5 br, h6 br {
+				display: none;
+			}
+
+		}
+
+	h1 {
+		font-size: 2.5em;
+	}
+
+		@media screen and (max-width: 980px) {
+
+			h1 {
+				font-size: 1.5em;
+			}
+
+		}
+
+		@media screen and (max-width: 736px) {
+
+			h1 {
+				font-size: 1.25em;
+			}
+
+		}
+
+	h2 {
+		font-size: 1.35em;
+	}
+
+		@media screen and (max-width: 736px) {
+
+			h2 {
+				font-size: 1em;
+			}
+
+		}
+
+	h3 {
+		font-size: 1em;
+	}
+
+	h4 {
+		font-size: 1em;
+	}
+
+	h5 {
+		font-size: 0.9em;
+	}
+
+	h6 {
+		font-size: 0.7em;
+	}
+
+	sub {
+		font-size: 0.8em;
+		position: relative;
+		top: 0.5em;
+	}
+
+	sup {
+		font-size: 0.8em;
+		position: relative;
+		top: -0.5em;
+	}
+
+	blockquote {
+		border-left: solid 4px rgba(255, 255, 255, 0.25);
+		font-style: italic;
+		margin: 0 0 2em 0;
+		padding: 0.5em 0 0.5em 2em;
+	}
+
+	code {
+		background: rgba(255, 255, 255, 0.075);
+		border-radius: 4px;
+		border: solid 1px rgba(255, 255, 255, 0.25);
+		font-family: "Courier New", monospace;
+		font-size: 0.9em;
+		margin: 0 0.25em;
+		padding: 0.25em 0.65em;
+	}
+
+	pre {
+		-webkit-overflow-scrolling: touch;
+		font-family: "Courier New", monospace;
+		font-size: 0.9em;
+		margin: 0 0 2em 0;
+	}
+
+		pre code {
+			display: block;
+			line-height: 1.75;
+			padding: 1em 1.5em;
+			overflow-x: auto;
+		}
+
+	hr {
+		border: 0;
+		border-bottom: solid 1px rgba(255, 255, 255, 0.25);
+		margin: 2em 0;
+	}
+
+		hr.major {
+			margin: 3em 0;
+		}
+
+	.align-left {
+		text-align: left;
+	}
+
+	.align-center {
+		text-align: center;
+	}
+
+	.align-right {
+		text-align: right;
+	}
+	body {
+		text-align: center;
+		background-color: #FFFFFF;
+		/*background-image: url("../../images/bg.jpg");*/
+		background-size: cover;
+		background-position: top center;
+	}
+
+	/* Buttons */
+.button {
+    height: 40px;
+    width: 70px;
+    border-radius: 8px;
+    border: 1px solid #000;
+}
+}
+.btn {
+  font-family: "PT Mono", sans-serif;
+  border-bottom: none !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 1.5;
+}
+.btn:hover, .btn:focus, .btn:active {
+  box-shadow: none;
+  outline: none !important;
+  border-color: transparent;
+}
+.btn.fh5co-btn-icon {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.btn.btn-lg {
+  padding: 30px;
+}
+.btn.btn-md {
+  padding: 15px;
+}
+.btn.btn-sm {
+  padding: 12px;
+}
+.btn.btn-xs {
+  padding: 10px;
+}
+
+.btn-outline {
+  border: 2px solid #eaeaea !important;
+  background: transparent;
+  color: #2a2e37;
+}
+.btn-outline:hover, .btn-outline:active, .btn-outline:focus {
+  border: 2px solid #282e3c !important;
+  background: #282e3c;
+  color: #ffffff;
+}
+
+.btn-primary {
+  background: #1d2dfd;
+  border: 2px solid #1d2dfd;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+  background: #0213f4;
+}
+
+.btn-success {
+  background: #00e195;
+  border: 2px solid #00e195;
+}
+.btn-success:hover, .btn-success:active, .btn-success:focus {
+  background: #00bd7d;
+}
+
+.btn-danger {
+  background: #e02745;
+  border: 2px solid #e02745;
+}
+.btn-danger:hover, .btn-danger:active, .btn-danger:focus {
+  background: #c71d38;
+}
+
+.btn-info {
+  background: #0bbff2;
+  border: 2px solid #0bbff2;
+}
+.btn-info:hover, .btn-info:active, .btn-info:focus {
+  background: #09a4d0;
+}
+
+.btn-warning {
+  background: #ffd042;
+  border: 2px solid #ffd042;
+}
+.btn-warning:hover, .btn-warning:active, .btn-warning:focus {
+  background: #ffc71e;
+}
+
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger {
+  border-color: transparent;
+}
+
+.form-control {
+  box-shadow: none !important;
+  border: 2px solid #ccc;
+}
+.form-control:hover, .form-control:focus, .form-control:active {
+  outline: none;
+  box-shadow: none !important;
+  border: 2px solid #1d2dfd;
+}
+
+.fh5co-spacer {
+  clear: both;
+  position: relative;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fh5co-spacer-xlg {
+  height: 150px;
+}
+@media screen and (max-width: 768px) {
+  .fh5co-spacer-xlg {
+    height: 80px;
+  }
+}
+
+.fh5co-spacer-lg {
+  height: 100px;
+}
+@media screen and (max-width: 768px) {
+  .fh5co-spacer-lg {
+    height: 70px;
+  }
+}
+
+.fh5co-spacer-md {
+  height: 80px;
+}
+@media screen and (max-width: 768px) {
+  .fh5co-spacer-md {
+    height: 50px;
+  }
+}
+
+.fh5co-spacer-sm {
+  height: 50px;
+}
+@media screen and (max-width: 768px) {
+  .fh5co-spacer-sm {
+    height: 20px;
+  }
+}
+
+.fh5co-spacer-xs {
+  height: 30px;
+}
+@media screen and (max-width: 768px) {
+  .fh5co-spacer-xs {
+    height: 20px;
+  }
+}
+
+.fh5co-spacer-xxs {
+  height: 30px;
+}
+
+.fh5co-letter-spacing {
+  letter-spacing: 1px;
+}
+
+.fh5co-no-margin-bottom {
+  margin-bottom: 0 !important;
+}
+
+.fh5co-uppercase-heading-sm {
+  font-size: 14px;
+  line-height: 26px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #ccc;
+}
+.fh5co-uppercase-heading-sm.with-border {
+  position: relative;
+  padding-bottom: 10px;
+}
+.fh5co-uppercase-heading-sm.with-border .fh5co-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: #1d2dfd;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.image-popup:hover {
+  opacity: .7;
+}
+
+.fh5co-call-to-action {
+  background-color: #1d2dfd;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+.fh5co-call-to-action h3 {
+  color: #ffffff !important;
+}
+.fh5co-call-to-action .fh5co-call-to-action-text {
+  font-size: 50px;
+  line-height: 60px;
+  font-family: "PT Mono", sans-serif;
+  text-transform: uppercase;
+}
+.fh5co-call-to-action .btn {
+  margin-bottom: 0 !important;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: #ffffff !important;
+}
+.fh5co-call-to-action > .fh5co-overlay {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+}
+.fh5co-call-to-action .fh5co-call-to-action-wrap {
+  position: relative;
+  padding: 50px 0;
+  display: table;
+  width: 100%;
+}
+.fh5co-call-to-action .fh5co-call-to-action-wrap .fh5co-call-to-action-inner {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 50px;
+  line-height: 62px;
+  color: #ffffff;
+  width: 100%;
+}
+	</style>
+</html
+
