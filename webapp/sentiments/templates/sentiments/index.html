@@ -26,15 +26,15 @@
 					<section id="main">
 					<br>
 					<span>
-							<form>
-							<input type="text" name="Subreddit" placeholder="subreddit name">
-							<input class="button btn-info" type="Submit" value="Go">
+						<form action="/inputSubReddit/" method="post">
+                        {% csrf_token %}
+						{{ form }}
 						</form>
 
 					</span>
 						
 
-
+                    <img src="data:image/png;base64,{{graphic|safe}}">
 					
 
 					</section>
