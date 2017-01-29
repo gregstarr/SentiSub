@@ -38,6 +38,7 @@ class RedditData():
     def grabComments(self):
         
         self.comments = []
+        self.comment_scores = []
         
         for s in self.submissions:
             print(s.title)
@@ -46,7 +47,10 @@ class RedditData():
             while comment_queue:
                 comment = comment_queue.pop(0)
                 self.comments.append(comment.body)
+                self.comment_scores.append(comment.score)
                 comment_queue.extend(comment.replies)
+                
+        self.comment_scores = np.array(self.comment_scores)
             
     def analyzeComments(self):
         
@@ -64,15 +68,17 @@ class RedditData():
         self.tb_data = self.tb_data[:,0]
         self.vader_diff = vader_data[:,3]-vader_data[:,2]
         self.vader_comp = vader_data[:,1][np.isfinite(vader_data[:,1])]
-        self.vader_diff = self.vader_diff[np.logical_and(self.vader_diff>=-1,self.vader_diff<=1)]
+        mask = np.logical_and(self.vader_diff>=-1,self.vader_diff<=1)
+        self.vader_diff = self.vader_diff[mask]
+        self.comment_scores = self.comment_scores[mask]
         self.tb_data = self.tb_data[np.logical_and(self.tb_data>=-1,self.tb_data<=1)]
                         
-        print('{} comments analyzed'.format(len(comments)))
+        print('{} comments analyzed'.format(len(self.comments)))
 
             
     def plotSentiment(self):
         
-        fig = plt.figure()
+        fig = plt.figure(figsize=(12,12),dpi=300)
         fig.suptitle('Sentiment')
         
         ax1 = fig.add_subplot(311)
@@ -90,6 +96,7 @@ class RedditData():
         ax3.hist(self.vader_comp,bins)
         ax3.set_ylabel('NLTK Compound'.format(np.mean(self.vader_comp)))
         ax3.set_xlim([-1,1])
+        plt.tight_layout()
         
         return FigureCanvas(fig)    
         
@@ -111,9 +118,23 @@ class RedditData():
         
         return day_data[:,1:],hour_data[:,1:],month_data[:,1:],day_times,hour_times,month_times
         
+    def plotSentvScore(self):
+        
+        fig = plt.figure(figsize=(12,12),dpi=300)
+        fig.suptitle('Comment Karma vs. Sentiment')
+        ax = fig.add_subplot(111)
+        ax.set_xlabel('Sentiment Polarity')
+        ax.set_ylabel('Comment Karma')
+        ax.plot(self.vader_diff,self.comment_scores,'.',label='one comment')
+        ax.legend()
+        plt.tight_layout()
+        
+        return FigureCanvas(fig)
+        
+        
     def plotTraffic(self):
         
-        day_fig = plt.figure()
+        day_fig = plt.figure(figsize=(12,12),dpi=300)
         day_fig.suptitle('Daily')
         ax1 = day_fig.add_subplot(311)
         ax1.plot(self.dt,self.dd[:,0])
@@ -127,10 +148,11 @@ class RedditData():
         ax3.plot(self.dt,self.dd[:,2])
         ax3.set_ylabel('Subscribers')
         
-        day_fig.autofmt_xdate()    
+        day_fig.autofmt_xdate()
+        plt.tight_layout()
         
         
-        hour_fig = plt.figure()
+        hour_fig = plt.figure(figsize=(12,12),dpi=300)
         hour_fig.suptitle('Hourly')
     
         hour_fmt = mdates.DateFormatter('%b %d %I:%M %p')
@@ -143,10 +165,11 @@ class RedditData():
         ax2.plot(self.ht,self.hd[:,1])
         ax2.set_ylabel('Pageviews')
     
-        hour_fig.autofmt_xdate()    
+        hour_fig.autofmt_xdate()
+        plt.tight_layout()
         
         
-        month_fig = plt.figure()
+        month_fig = plt.figure(figsize=(12,12),dpi=300)
         month_fig.suptitle('Monthly')
     
         ax1 = month_fig.add_subplot(211)
@@ -157,6 +180,7 @@ class RedditData():
         ax2.plot(self.mt,self.md[:,1])
         ax2.set_ylabel('Pageviews')
     
-        month_fig.autofmt_xdate() 
+        month_fig.autofmt_xdate()
+        plt.tight_layout()
         
         return FigureCanvas(day_fig),FigureCanvas(hour_fig),FigureCanvas(month_fig)
