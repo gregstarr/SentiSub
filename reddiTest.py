@@ -65,25 +65,27 @@ def analyzeComments(comments):
     return tb_data,vader_diff,vader_comp
         
 def plotSentiment(tb_data,vader_diff,vader_comp):
-    plt.figure()
-    plt.suptitle('Sentiment')
+    fig = plt.figure()
+    fig.suptitle('Sentiment')
     
-    plt.subplot(311)
+    ax1 = fig.add_subplot(311)
     bins = np.arange(-1.05,1.05,.1)
-    n,bins,patches = plt.hist(tb_data,bins)
-    plt.xlim([-1,1])
-    plt.ylabel('TextBlob'.format(np.mean(tb_data)))
+    n,bins,patches = ax1.hist(tb_data,bins)
+    ax1.set_xlim([-1,1])
+    ax1.set_ylabel('TextBlob'.format(np.mean(tb_data)))
     
-    plt.subplot(312)
-    plt.hist(vader_diff,bins)
-    plt.ylabel('NLTK Difference'.format(np.mean(vader_diff)))
-    plt.xlim([-1,1])
+    ax2 = fig.add_subplot(312)
+    ax2.hist(vader_diff,bins)
+    ax2.set_ylabel('NLTK Difference'.format(np.mean(vader_diff)))
+    plt.set_xlim([-1,1])
     
-    plt.subplot(313)
-    plt.hist(vader_comp,bins)
-    plt.ylabel('NLTK Compound'.format(np.mean(vader_comp)))
-    plt.xlim([-1,1])
-    plt.show()
+    ax3 = fig.add_subplot(313)
+    ax3.hist(vader_comp,bins)
+    ax3.set_ylabel('NLTK Compound'.format(np.mean(vader_comp)))
+    ax3.set_xlim([-1,1])
+    
+    return FigureCanvas(fig)    
+    
     
 def getTraffic(subreddit):
     """
